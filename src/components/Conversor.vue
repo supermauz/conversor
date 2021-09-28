@@ -21,13 +21,16 @@ export default {
         //Converte o valor das moedas
         converter(){
             //Api de Conversao
-            let de_para = this.moedaA + "-" + this.moedaB; 
-            console.log(de_para);
-            let url ="https://economia.awesomeapi.com.br/last/"+de_para;
+           
+           
+            let url ="https://economia.awesomeapi.com.br/json/last/USD-BRL";
 
-        fetch(url).then(res => { return res.json();})
-                  .then(json => {
-                      let cotacao = json[de_para].ask;
+        fetch(url).then(res => { 
+                      return res.json();
+                      })
+                  .then(json => { 
+                      let cotacao = json["USD-BRL"].high;
+                      
                       this.moedaB_value = (cotacao * parseFloat(this.moedaA_value)).toFixed(2);  
                   })
 
